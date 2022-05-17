@@ -5,12 +5,14 @@
         <div v-for="item in dailyAgenda.dailyAgendaItems" :key="item.id">
            <daily-task-item :dailyAgendaItem="item" @saveAgendaItem="saveAgendaItem"></daily-task-item>
         </div>
-    </div>
 
-    visual DB
+        visual DB
         <div v-for="item in dailyAgenda.dailyAgendaItems" :key="item.id">
             {{item.result}}
         </div>
+
+    </div>
+
 </div>
 </template>
 
@@ -27,15 +29,8 @@ export default {
     },
     computed: {
         dailyAgenda() {
-            let agendaObject = this.$store.state.dailyAgenda.find(agenda => 
-                new Date(agenda.date * 1000).getFullYear() === new Date(this.today * 1000).getFullYear() &&
-                new Date(agenda.date * 1000).getMonth() === new Date(this.today * 1000).getMonth() &&
-                new Date(agenda.date * 1000).getDate() === new Date(this.today * 1000).getDate()
-            )
+            let agendaObject = this.$store.getters.dailyAgenda
             if (agendaObject) {
-                agendaObject.dailyAgendaItems.forEach(item => {
-                    item.task = this.$store.state.tasks.find(task => task.id === item.taskID)
-                });
                 return {... agendaObject}
             } else {
                 return null
@@ -49,11 +44,7 @@ export default {
         }
     },
     async created() {
-        let agendaObject = this.$store.state.dailyAgenda.find(agenda => 
-            new Date(agenda.date * 1000).getFullYear() === new Date(this.today * 1000).getFullYear() &&
-            new Date(agenda.date * 1000).getMonth() === new Date(this.today * 1000).getMonth() &&
-            new Date(agenda.date * 1000).getDate() === new Date(this.today * 1000).getDate()
-        )
+        let agendaObject = this.$store.getters.dailyAgenda
         if (agendaObject === undefined) {
             await this.$store.dispatch('createDailyAgenda')
             agendaObject = this.$store.state.dailyAgenda.find(agenda => 

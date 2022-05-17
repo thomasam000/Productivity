@@ -1,15 +1,15 @@
 <template>
-    <div>
-        {{item.task.name}}: {{item.task.description}}
-        <div v-if="item.task.type == 'boolean'">
-            <div>goal: {{item.task.goal}}</div>
+    <div v-if="task">
+        {{task.name}}: {{task.description}}
+        <div v-if="task.type == 'boolean'">
+            <div>goal: {{task.goal}}</div>
             <input type="checkbox" v-model="item.result">
-            <div v-if="item.result"> Complete </div>
+            <div v-if="dailyAgendaItem.result"> Complete </div>
         </div>
-        <div v-if="item.task.type == 'minutes'">
-            <div>goal: {{item.task.goal}}</div>
+        <div v-if="task.type == 'minutes'">
+            <div>goal: {{task.goal}}</div>
             <input type="number" v-model="item.result">
-            <div v-if="item.result >= item.task.goal"> Complete </div>
+            <div v-if="dailyAgendaItem.result >= task.goal"> Complete </div>
         </div>
         <button @click="save">Save</button>
     </div>
@@ -22,6 +22,11 @@ export default {
     data () {
         return {
             item: {... this.dailyAgendaItem}
+        }
+    },
+    computed: {
+        task() {
+            return this.$store.state.tasks.find(task => task.id == this.dailyAgendaItem.taskID)
         }
     },
     methods: {
