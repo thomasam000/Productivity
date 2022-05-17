@@ -1,41 +1,54 @@
 <template>
 <div>
+    <!-- <el-switch v-model="value1" /> -->
     <div v-if="dailyAgenda">
         <div v-for="item in dailyAgenda.dailyAgendaItems" :key="item.id">
-            {{item.task.name}}: {{item.task.description}}
-            <div v-if="item.task.type == 'boolean'">
-                <div>goal: {{item.task.goal}}</div>
-                <input type="checkbox" v-model="item.result">
-                <div v-if="item.result"> Complete </div>
-            </div>
-            <div v-if="item.task.type == 'minutes'">
-                <div>goal: {{item.task.goal}}</div>
-                <input type="number" v-model="item.result">
-                <div v-if="item.result >= item.task.goal"> Complete </div>
-            </div>
+           <daily-task-item :dailyAgendaItem="item" @saveAgendaItem="saveAgendaItem"></daily-task-item>
         </div>
     </div>
+
+    visual DB
+        <div v-for="item in dailyAgenda.dailyAgendaItems" :key="item.id">
+            {{item.result}}
+        </div>
 </div>
 </template>
 
 <script>
+import dailyTaskItem from '@/components/daily-task-item.vue'
 
-export default {
+export default { 
+    components: {'daily-task-item':dailyTaskItem} ,  
     data () {
         return {
-            dailyAgenda: null,
-            today: Math.floor(Date.now() / 1000)
+            today: Math.floor(Date.now() / 1000),
+            value1: true
         }
     },
     computed: {
-
+        dailyAgenda() {
+            let agendaObject = this.$store.state.dailyAgenda.find(agenda => 
+                new Date(agenda.date * 1000).getFullYear() === new Date(this.today * 1000).getFullYear() &&
+                new Date(agenda.date * 1000).getMonth() === new Date(this.today * 1000).getMonth() &&
+                new Date(agenda.date * 1000).getDate() === new Date(this.today * 1000).getDate()
+            )
+            if (agendaObject) {
+                agendaObject.dailyAgendaItems.forEach(item => {
+                    item.task = this.$store.state.tasks.find(task => task.id === item.taskID)
+                });
+                return {... agendaObject}
+            } else {
+                return null
+            }
+        }
     },
     methods: {
-
+        async saveAgendaItem(dailyAgendaItem) {
+            console.log(dailyAgendaItem.result)
+            await this.$store.dispatch('updateDailyAgendaItem', {dailyAgendaId: this.dailyAgenda.id, dailyAgendaItem})
+        }
     },
     async created() {
-
-
         let agendaObject = this.$store.state.dailyAgenda.find(agenda => 
             new Date(agenda.date * 1000).getFullYear() === new Date(this.today * 1000).getFullYear() &&
             new Date(agenda.date * 1000).getMonth() === new Date(this.today * 1000).getMonth() &&
@@ -48,19 +61,7 @@ export default {
                 new Date(agenda.date * 1000).getMonth() === new Date(this.today * 1000).getMonth() &&
                 new Date(agenda.date * 1000).getDate() === new Date(this.today * 1000).getDate()
             )
-            agendaObject.dailyAgendaItems.forEach(item => {
-                item.task = this.$store.state.tasks.find(task => task.id === item.taskID)
-            });
-            this.dailyAgenda = {... agendaObject}
-
-        } else {
-
-            agendaObject.dailyAgendaItems.forEach(item => {
-                item.task = this.$store.state.tasks.find(task => task.id === item.taskID)
-            });
-            this.dailyAgenda = {... agendaObject}
-
-        }
+        } 
     }
 }
 </script>

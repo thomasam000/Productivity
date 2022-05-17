@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkproductivity"]=self["webpackChunkproductivity"]||[]).push([[268],{6197:function(t,e,r){function s(t,e,r,s,n,u){return" testing 1, 2, 3 "}r.r(e),r.d(e,{default:function(){return c}});var n={computed:{tasks(){return console.log(this.$store.state),this.$store.state}}},u=r(89);const o=(0,u.Z)(n,[["render",s]]);var c=o}}]);
-//# sourceMappingURL=Home.a42f8058.js.map
