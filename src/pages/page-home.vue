@@ -6,7 +6,7 @@
            <daily-task-item :dailyAgendaItem="item" @saveAgendaItem="saveAgendaItem"></daily-task-item>
         </div>
 
-        visual DB
+        virtual DataBase
         <div v-for="item in dailyAgenda.dailyAgendaItems" :key="item.id">
             {{item.result}}
         </div>
@@ -31,7 +31,23 @@ export default {
         dailyAgenda() {
             let agendaObject = this.$store.getters.dailyAgenda
             if (agendaObject) {
-                return {... agendaObject}
+                return agendaObject
+            } else {
+                return null
+            }
+        },
+        weeklyAgenda() {
+            let agendaObject = this.$store.getters.weeklyAgenda
+            if (agendaObject) {
+                return agendaObject
+            } else {
+                return null
+            }
+        },
+        monthlyAgenda() {
+            let agendaObject = this.$store.getters.monthlyAgenda
+            if (agendaObject) {
+                return agendaObject
             } else {
                 return null
             }
@@ -44,14 +60,17 @@ export default {
         }
     },
     async created() {
-        let agendaObject = this.$store.getters.dailyAgenda
-        if (agendaObject === undefined) {
-            await this.$store.dispatch('createDailyAgenda')
-            agendaObject = this.$store.state.dailyAgenda.find(agenda => 
-                new Date(agenda.date * 1000).getFullYear() === new Date(this.today * 1000).getFullYear() &&
-                new Date(agenda.date * 1000).getMonth() === new Date(this.today * 1000).getMonth() &&
-                new Date(agenda.date * 1000).getDate() === new Date(this.today * 1000).getDate()
-            )
+        let dailyAgendaObject = this.$store.getters.dailyAgenda
+        if (dailyAgendaObject === undefined) {
+            await this.$store.dispatch('createAgenda', 'daily')
+        } 
+        let weeklyAgendaObject = this.$store.getters.weeklyAgenda
+        if (weeklyAgendaObject === undefined) {
+            await this.$store.dispatch('createAgenda', 'weekly')
+        } 
+        let monthlyAgendaObject = this.$store.getters.monthlyAgenda
+        if (monthlyAgendaObject === undefined) {
+            await this.$store.dispatch('createAgenda', 'monthly')
         } 
     }
 }

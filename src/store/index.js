@@ -33,44 +33,57 @@ export default createStore({
         //   }
         dailyAgenda(state) {
             var startOfDay = moment().startOf('day').unix()
-            var endOfDay = moment().endOf('day').unix()
-            return state.dailyAgenda.find(agenda => agenda.date >= startOfDay && agenda.date < endOfDay)
+            return state.dailyAgenda.find(agenda => agenda.date == startOfDay)
+        },
+        weeklyAgenda(state) {
+            var startOfWeek = moment().startOf('week').unix()
+            return state.weeklyAgenda.find(agenda => agenda.date == startOfWeek)
+        },
+        monthlyAgenda(state) {
+            var startOfMonth = moment().startOf('month').unix()
+            return state.monthlyAgenda.find(agenda => agenda.date == startOfMonth)
         }
     },
     actions: {
-        createDailyAgenda(context) {
-            console.log(context)
-            var dailyAgenda = {};
-            dailyAgenda['date'] = Math.floor(Date.now() / 1000);
-            dailyAgenda['userID'] = 'ALXhxjwgY9PinwNGHpfai6OWyDu2'
-            dailyAgenda['dailyAgendaItems'] = []
-            dailyAgenda['id'] = 'kjashdfjlkhsa' + Math.random()
+        createAgenda(context, agendaTypeString) {
+            var agenda = {};
+            if (agendaTypeString == 'daily') {
+                agenda['date'] = moment().startOf('day').unix()
+                agenda['endDate'] = moment().startOf('day').unix()
+            } else if (agendaTypeString == 'weekly') {
+                agenda['date'] = moment().startOf('week').unix()
+                agenda['endDate'] = moment().startOf('week').unix()
+            } else if (agendaTypeString == 'monthly') {
+                agenda['date'] = moment().startOf('month').unix()
+                agenda['endDate'] = moment().startOf('month').unix()
+            }
+            agenda['userID'] = 'ALXhxjwgY9PinwNGHpfai6OWyDu2'
+            agenda[agendaTypeString + 'AgendaItems'] = []
+            agenda['id'] = 'kjashdfjlkhsa' + Math.random()
             context.state.tasks.forEach((task) => {
-                if (task.duration == 'daily') {
-                    var dailyAgendaItem = {}
-                    dailyAgendaItem['taskID'] = task.id
+                if (task.duration == 'day') {
+                    var AgendaItem = {}
+                    AgendaItem['taskID'] = task.id
                     if (task.type == 'boolean') {
-                        dailyAgendaItem['result'] = false
+                        AgendaItem['result'] = false
                     } else if (task.type == 'minutes') {
-                        dailyAgendaItem['result'] = 0
+                        AgendaItem['result'] = 0
                     }
-                    dailyAgenda['dailyAgendaItems'].push(dailyAgendaItem)
+                    agenda[agendaTypeString + 'AgendaItems'].push(AgendaItem)
                 }
             })
-            context.commit('setDailyAgenda', {dailyAgenda})
+            context.commit('setAgenda', {agenda, agendaTypeString})            
         },
+
         updateDailyAgendaItem(context, {dailyAgendaId, dailyAgendaItem}) {
-            console.log('dailyAgendaItem.result')
-            console.log(dailyAgendaItem)
             context.commit('setDailyAgendaItem', {dailyAgendaId, dailyAgendaItem})
         }
     },
     mutations: {
-        setDailyAgenda(state, {dailyAgenda}) {
-            state.dailyAgenda.push(dailyAgenda)
+        setAgenda(state, {agenda, agendaTypeString}) {
+            state[agendaTypeString + 'Agenda'].push(agenda)
         },
         setDailyAgendaItem(state, {dailyAgendaId, dailyAgendaItem}) {
-            console.log(dailyAgendaItem.result)
             var dailyAgendaIndex = state.dailyAgenda.findIndex((agenda) => agenda.id == dailyAgendaId)
             var agendaItemIndex = state.dailyAgenda[dailyAgendaIndex].dailyAgendaItems.findIndex(item => item.taskID == dailyAgendaItem.taskID)
             state.dailyAgenda[dailyAgendaIndex].dailyAgendaItems[agendaItemIndex].result = dailyAgendaItem.result

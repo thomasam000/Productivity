@@ -1,7 +1,7 @@
 {
     "users": [
         {
-            "bio": "Now this is a story all about how my life got flipped-turned upside down and I'd like to take a minute just sit right there i'll tell you how I became the prince of a town called Bel-Air.",
+            "bio": "Software developer with bad habits (but not for long).",
             "email": "thomasam000@gmail.com",
             "lastVisitAt": 1599628794,
             "name": "Sam",
@@ -51,7 +51,7 @@
             "slug": "scripture-study",
             "id": "-KpOx5Y4AqRr3sB4Ybwj",
             "type": "minutes",
-            "duration": "daily",
+            "duration": "day",
             "goal": 30
         },
         {
@@ -63,7 +63,7 @@
             "slug": "morning-prayer",
             "id": "-KsjO4_W3W9Q2Z2UmuPr",
             "type": "boolean",
-            "duration": "daily",
+            "duration": "day",
             "goal": true
         },
         {
@@ -75,7 +75,7 @@
             "slug": "nightly-prayer",
             "id": "-KsjPat5MWCx-dkjNVg8",
             "type": "boolean",
-            "duration": "daily",
+            "duration": "day",
             "goal": true
         },
         {
@@ -87,7 +87,7 @@
             "slug": "exercise",
             "id": "-KsjPjasLh0TFtZmffEo",
             "type": "minutes",
-            "duration": "daily",
+            "duration": "day",
             "goal": 60
         },
         {
@@ -99,7 +99,7 @@
             "slug": "make-the-bed",
             "id": "-Kvclvu_Qd9QdS9ciqUl",
             "type": "boolean",
-            "duration": "daily",
+            "duration": "day",
             "goal": true
         }
     ],
@@ -158,5 +158,11 @@
                 }
             ]
         }
+    ],
+    "weeklyAgenda": [
+
+    ],
+    "monthlyAgenda": [
+
     ]
 }
