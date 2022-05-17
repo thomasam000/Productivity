@@ -1,0 +1,160 @@
+{
+    "users": [
+        {
+            "bio": "Now this is a story all about how my life got flipped-turned upside down and I'd like to take a minute just sit right there i'll tell you how I became the prince of a town called Bel-Air.",
+            "email": "thomasam000@gmail.com",
+            "lastVisitAt": 1599628794,
+            "name": "Sam",
+            "isModerator": true,
+            "registeredAt": 1594025541,
+            "username": "thomasam000",
+            "usernameLower": "thomasam000",
+            "website": "http://samthomasdev.com",
+            "id": "ALXhxjwgY9PinwNGHpfai6OWyDu2"
+        }
+    ],
+    "taskCategory": [
+        {
+            "taskIDs": [
+              "-KsjPjasLh0TFtZmffEo"
+            ],
+            "name": "Self Care",
+            "slug": "self-care",
+            "id": "-KpR7vRkiRPpbUd_TVAR"
+        },
+        {
+            "taskIDs": [
+              "-KpOx5Y4AqRr3sB4Ybwj",
+              "-KsjO4_W3W9Q2Z2UmuPr",
+              "-KsjPat5MWCx-dkjNVg8"
+            ],
+            "name": "Spiritual",
+            "slug": "spritual",
+            "id": "-KsjPKA6hDuHlQK_lJWO"
+        },
+        {
+            "taskIDs": [
+              "-Kvclvu_Qd9QdS9ciqUl"
+            ],
+            "name": "Around The House",
+            "slug": "around-the-house",
+            "id": "-KvclpNRjpI5W-j0JQGU"
+        }
+    ],
+    "tasks": [
+        {
+            "userID": "ALXhxjwgY9PinwNGHpfai6OWyDu2",
+            "categoryID": "-KsjPKA6hDuHlQK_lJWO",
+            "description": "Time spend in minutes studying the scriptures each day.",
+            "createdOn": 1594035908,
+            "name": "Scripture Study",
+            "slug": "scripture-study",
+            "id": "-KpOx5Y4AqRr3sB4Ybwj",
+            "type": "minutes",
+            "duration": "daily",
+            "goal": 30
+        },
+        {
+            "userID": "ALXhxjwgY9PinwNGHpfai6OWyDu2",
+            "categoryID": "-KsjPKA6hDuHlQK_lJWO",
+            "description": "pray before going to work in the morning",
+            "createdOn": 1594035908,
+            "name": "Morning Prayer",
+            "slug": "morning-prayer",
+            "id": "-KsjO4_W3W9Q2Z2UmuPr",
+            "type": "boolean",
+            "duration": "daily",
+            "goal": true
+        },
+        {
+            "userID": "ALXhxjwgY9PinwNGHpfai6OWyDu2",
+            "categoryID": "-KsjPKA6hDuHlQK_lJWO",
+            "description": "pray before going to sleep",
+            "createdOn": 1594035908,
+            "name": "Nightly Prayer",
+            "slug": "nightly-prayer",
+            "id": "-KsjPat5MWCx-dkjNVg8",
+            "type": "boolean",
+            "duration": "daily",
+            "goal": true
+        },
+        {
+            "userID": "ALXhxjwgY9PinwNGHpfai6OWyDu2",
+            "categoryID": "-KpR7vRkiRPpbUd_TVAR",
+            "description": "time (in minutes) spent each day doing physical activity",
+            "createdOn": 1594035908,
+            "name": "Exercise",
+            "slug": "exercise",
+            "id": "-KsjPjasLh0TFtZmffEo",
+            "type": "minutes",
+            "duration": "daily",
+            "goal": 60
+        },
+        {
+            "userID": "ALXhxjwgY9PinwNGHpfai6OWyDu2",
+            "categoryID": "-KvclpNRjpI5W-j0JQGU",
+            "description": "Made bed in the morning before work",
+            "createdOn": 1594035908,
+            "name": "Make the bed",
+            "slug": "make-the-bed",
+            "id": "-Kvclvu_Qd9QdS9ciqUl",
+            "type": "boolean",
+            "duration": "daily",
+            "goal": true
+        }
+    ],
+    "dailyAgenda": [
+        {
+            "userID": "ALXhxjwgY9PinwNGHpfai6OWyDu2",
+            "date": 1594035908,
+            "dailyAgendaItems": [
+                {
+                    "taskID": "-KpOx5Y4AqRr3sB4Ybwj",
+                    "result": 20
+                },
+                {
+                    "taskID": "-KsjO4_W3W9Q2Z2UmuPr",
+                    "result": true
+                },
+                {
+                    "taskID": "-KsjPat5MWCx-dkjNVg8",
+                    "result": false
+                },
+                {
+                    "taskID": "-KsjPjasLh0TFtZmffEo",
+                    "result": 0
+                },
+                {
+                    "taskID": "-Kvclvu_Qd9QdS9ciqUl",
+                    "result": true
+                }
+            ]
+        },
+        {
+            "userID": "ALXhxjwgY9PinwNGHpfai6OWyDu2",
+            "date": 1594122308,
+            "dailyAgendaItems": [
+                {
+                    "taskID": "-KpOx5Y4AqRr3sB4Ybwj",
+                    "result": 0
+                },
+                {
+                    "taskID": "-KsjO4_W3W9Q2Z2UmuPr",
+                    "result": false
+                },
+                {
+                    "taskID": "-KsjPat5MWCx-dkjNVg8",
+                    "result": true
+                },
+                {
+                    "taskID": "-KsjPjasLh0TFtZmffEo",
+                    "result": 0
+                },
+                {
+                    "taskID": "-Kvclvu_Qd9QdS9ciqUl",
+                    "result": false
+                }
+            ]
+        }
+    ]
+}
