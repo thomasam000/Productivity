@@ -1,7 +1,6 @@
 <template>
 <div>
-    <!-- <el-switch v-model="value1" /> -->
-    <div v-if="dailyAgenda">
+=    <div v-if="dailyAgenda">
         <div v-for="item in dailyAgenda.dailyAgendaItems" :key="item.id">
            <daily-task-item :dailyAgendaItem="item" @saveAgendaItem="saveAgendaItem"></daily-task-item>
         </div>
@@ -23,8 +22,7 @@ export default {
     components: {'daily-task-item':dailyTaskItem} ,  
     data () {
         return {
-            today: Math.floor(Date.now() / 1000),
-            value1: true
+
         }
     },
     computed: {

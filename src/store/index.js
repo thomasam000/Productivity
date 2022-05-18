@@ -7,30 +7,6 @@ import moment from 'moment'
 export default createStore({ 
     state: sourceData,
     getters: {
-        // dailyAgenda: (state, getters, rootState) => {
-        //     return (id) => {
-        //         const user = findById(state.items, id)
-        //         if (!user) return null
-        //         return {
-        //             ...user,
-        //             get posts () {
-        //             return rootState.posts.items.filter(post => post.userId === user.id)
-        //             },
-        //             get postsCount () {
-        //             return user.postsCount || 0
-        //             },
-        //             get threads () {
-        //             return rootState.threads.items.filter(post => post.userId === user.id)
-        //             },
-        //             get threadIds () {
-        //             return user.threads
-        //             },
-        //             get threadsCount () {
-        //             return user.threads?.length || 0
-        //             }
-        //         }
-        //     }
-        //   }
         dailyAgenda(state) {
             var startOfDay = moment().startOf('day').unix()
             return state.dailyAgenda.find(agenda => agenda.date == startOfDay)

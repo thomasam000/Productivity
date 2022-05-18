@@ -7,6 +7,11 @@ const routes = [
     name: 'Home',
     component: () => import(/* webpackChunkName: "Home" */ '@/pages/page-home')
   },
+  {
+    path: '/tasks',
+    name: 'Tasks',
+    component: () => import(/* webpackChunkName: "Home" */ '@/pages/page-tasks')
+  },
 //   {
 //     path: '/me',
 //     name: 'Profile',
