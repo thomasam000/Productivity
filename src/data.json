@@ -15,27 +15,16 @@
     ],
     "taskCategory": [
         {
-            "taskIDs": [
-              "-KsjPjasLh0TFtZmffEo"
-            ],
             "name": "Self Care",
             "slug": "self-care",
             "id": "-KpR7vRkiRPpbUd_TVAR"
         },
         {
-            "taskIDs": [
-              "-KpOx5Y4AqRr3sB4Ybwj",
-              "-KsjO4_W3W9Q2Z2UmuPr",
-              "-KsjPat5MWCx-dkjNVg8"
-            ],
             "name": "Spiritual",
             "slug": "spritual",
             "id": "-KsjPKA6hDuHlQK_lJWO"
         },
         {
-            "taskIDs": [
-              "-Kvclvu_Qd9QdS9ciqUl"
-            ],
             "name": "Around The House",
             "slug": "around-the-house",
             "id": "-KvclpNRjpI5W-j0JQGU"
@@ -108,7 +97,7 @@
             "id": "u4r8XCziZEWEXsj2UIKNHBoDh0n2",
             "userID": "ALXhxjwgY9PinwNGHpfai6OWyDu2",
             "date": 1594035908,
-            "dailyAgendaItems": [
+            "agendaItems": [
                 {
                     "taskID": "-KpOx5Y4AqRr3sB4Ybwj",
                     "result": 20
@@ -135,7 +124,7 @@
             "id": "rpbB8C6ifrYmNDufMERWfQUoa202",
             "userID": "ALXhxjwgY9PinwNGHpfai6OWyDu2",
             "date": 1594122308,
-            "dailyAgendaItems": [
+            "agendaItems": [
                 {
                     "taskID": "-KpOx5Y4AqRr3sB4Ybwj",
                     "result": 0

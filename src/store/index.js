@@ -2,7 +2,6 @@ import { createStore } from "vuex";
 import sourceData from '@/data'
 import moment from 'moment'
 
-
   
 export default createStore({ 
     state: sourceData,
@@ -21,23 +20,35 @@ export default createStore({
         }
     },
     actions: {
+        saveTask(context, task) {
+            task.id = 'adfasfhjwe' + Math.random()
+            task.userID = "ALXhxjwgY9PinwNGHpfai6OWyDu2"
+            task.createdOn = moment().startOf(task.duration).unix()
+            task.slug = this.name
+            if (task.type == "boolean") {
+                task.goal = true
+            }   
+            context.commit('createTask', {task})            
+        },
         createAgenda(context, agendaTypeString) {
             var agenda = {};
+            var day_week_or_month = ''
             if (agendaTypeString == 'daily') {
-                agenda['date'] = moment().startOf('day').unix()
-                agenda['endDate'] = moment().startOf('day').unix()
+                day_week_or_month = 'day'
             } else if (agendaTypeString == 'weekly') {
-                agenda['date'] = moment().startOf('week').unix()
-                agenda['endDate'] = moment().startOf('week').unix()
+                day_week_or_month = 'week'
             } else if (agendaTypeString == 'monthly') {
-                agenda['date'] = moment().startOf('month').unix()
-                agenda['endDate'] = moment().startOf('month').unix()
+                day_week_or_month = 'month'
             }
+
+            agenda['date'] = moment().startOf(day_week_or_month).unix()
+            agenda['endDate'] = moment().startOf(day_week_or_month).unix()
+
             agenda['userID'] = 'ALXhxjwgY9PinwNGHpfai6OWyDu2'
-            agenda[agendaTypeString + 'AgendaItems'] = []
+            agenda['agendaItems'] = []
             agenda['id'] = 'kjashdfjlkhsa' + Math.random()
             context.state.tasks.forEach((task) => {
-                if (task.duration == 'day') {
+                if (task.duration == day_week_or_month) {
                     var AgendaItem = {}
                     AgendaItem['taskID'] = task.id
                     if (task.type == 'boolean') {
@@ -45,24 +56,28 @@ export default createStore({
                     } else if (task.type == 'minutes') {
                         AgendaItem['result'] = 0
                     }
-                    agenda[agendaTypeString + 'AgendaItems'].push(AgendaItem)
+                    agenda['agendaItems'].push(AgendaItem)
                 }
             })
             context.commit('setAgenda', {agenda, agendaTypeString})            
         },
 
-        updateDailyAgendaItem(context, {dailyAgendaId, dailyAgendaItem}) {
-            context.commit('setDailyAgendaItem', {dailyAgendaId, dailyAgendaItem})
+        updateAgendaItem(context, {agendaId, agendaItem, agendaTypeString}) {
+            context.commit('setAgendaItem', {agendaId, agendaItem, agendaTypeString})
         }
     },
     mutations: {
         setAgenda(state, {agenda, agendaTypeString}) {
             state[agendaTypeString + 'Agenda'].push(agenda)
         },
-        setDailyAgendaItem(state, {dailyAgendaId, dailyAgendaItem}) {
-            var dailyAgendaIndex = state.dailyAgenda.findIndex((agenda) => agenda.id == dailyAgendaId)
-            var agendaItemIndex = state.dailyAgenda[dailyAgendaIndex].dailyAgendaItems.findIndex(item => item.taskID == dailyAgendaItem.taskID)
-            state.dailyAgenda[dailyAgendaIndex].dailyAgendaItems[agendaItemIndex].result = dailyAgendaItem.result
+        setAgendaItem(state, {agendaId, agendaItem, agendaTypeString}) {
+            var agendaIndex = state[agendaTypeString + 'Agenda'].findIndex((agenda) => agenda.id == agendaId)
+            var agendaItemIndex = state[agendaTypeString + 'Agenda'][agendaIndex].agendaItems.findIndex(item => item.taskID == agendaItem.taskID)
+            state[agendaTypeString + 'Agenda'][agendaIndex].agendaItems[agendaItemIndex].result = agendaItem.result
+        },
+        createTask(state, {task}) {
+            state.tasks.push(task)
         }
+
     }
 })

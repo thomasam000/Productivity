@@ -7,6 +7,10 @@
             <div>type: {{task.type}}</div>
         </div>
 
+        <router-link :to="{name: 'addTask'}">
+            Create Task
+        </router-link>
+
     </div>
 </template>
 

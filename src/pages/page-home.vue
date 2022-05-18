@@ -1,16 +1,28 @@
 <template>
 <div>
-=    <div v-if="dailyAgenda">
-        <div v-for="item in dailyAgenda.dailyAgendaItems" :key="item.id">
-           <daily-task-item :dailyAgendaItem="item" @saveAgendaItem="saveAgendaItem"></daily-task-item>
+    <div v-if="dailyAgenda">
+        <div v-for="item in dailyAgenda.agendaItems" :key="item.id">
+           <daily-task-item :agendaItem="item" @saveAgendaItem="saveDailyAgendaItem"></daily-task-item>
         </div>
-
-        virtual DataBase
-        <div v-for="item in dailyAgenda.dailyAgendaItems" :key="item.id">
-            {{item.result}}
-        </div>
-
     </div>
+
+    <div v-if="weeklyAgenda">
+        <div v-for="item in weeklyAgenda.agendaItems" :key="item.id">
+           <daily-task-item :agendaItem="item" @saveAgendaItem="saveWeeklyAgendaItem"></daily-task-item>
+        </div>
+    </div>
+
+    <div v-if="monthlyAgenda">
+        <div v-for="item in monthlyAgenda.agendaItems" :key="item.id">
+           <daily-task-item :agendaItem="item" @saveAgendaItem="saveMonthlyAgendaItem"></daily-task-item>
+        </div>
+    </div>
+
+        <!-- virtual DataBase
+        <div v-for="item in dailyAgenda.agendaItems" :key="item.id">
+            {{item.result}}
+        </div> -->
+
 
 </div>
 </template>
@@ -52,9 +64,14 @@ export default {
         }
     },
     methods: {
-        async saveAgendaItem(dailyAgendaItem) {
-            console.log(dailyAgendaItem.result)
-            await this.$store.dispatch('updateDailyAgendaItem', {dailyAgendaId: this.dailyAgenda.id, dailyAgendaItem})
+        async saveDailyAgendaItem(agendaItem) {
+            await this.$store.dispatch('updateAgendaItem', {agendaId: this.dailyAgenda.id, agendaItem, agendaTypeString:'daily'})
+        },
+        async saveWeeklyAgendaItem(agendaItem) {
+            await this.$store.dispatch('updateAgendaItem', {agendaId: this.weeklyAgenda.id, agendaItem, agendaTypeString:'weekly'})
+        },
+        async saveMonthlyAgendaItem(agendaItem) {
+            await this.$store.dispatch('updateAgendaItem', {agendaId: this.monthlyAgenda.id, agendaItem, agendaTypeString:'monthly'})
         }
     },
     async created() {

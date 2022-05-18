@@ -4,12 +4,12 @@
         <div v-if="task.type == 'boolean'">
             <div>goal: {{task.goal}}</div>
             <input type="checkbox" v-model="item.result">
-            <div v-if="dailyAgendaItem.result"> Complete </div>
+            <div v-if="agendaItem.result"> Complete </div>
         </div>
         <div v-if="task.type == 'minutes'">
             <div>goal: {{task.goal}}</div>
             <input type="number" v-model="item.result">
-            <div v-if="dailyAgendaItem.result >= task.goal"> Complete </div>
+            <div v-if="agendaItem.result >= task.goal"> Complete </div>
         </div>
         <button @click="save">Save</button>
     </div>
@@ -18,15 +18,15 @@
 <script>
 
 export default { 
-    props: ['dailyAgendaItem'],
+    props: ['agendaItem'],
     data () {
         return {
-            item: {... this.dailyAgendaItem}
+            item: {... this.agendaItem}
         }
     },
     computed: {
         task() {
-            return this.$store.state.tasks.find(task => task.id == this.dailyAgendaItem.taskID)
+            return this.$store.state.tasks.find(task => task.id == this.agendaItem.taskID)
         }
     },
     methods: {

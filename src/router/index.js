@@ -12,6 +12,11 @@ const routes = [
     name: 'Tasks',
     component: () => import(/* webpackChunkName: "Home" */ '@/pages/page-tasks')
   },
+  {
+    path: '/addTask',
+    name: 'addTask',
+    component: () => import(/* webpackChunkName: "Home" */ '@/pages/page-add-task')
+  },
 //   {
 //     path: '/me',
 //     name: 'Profile',

@@ -1,17 +1,18 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+    <the-nav-bar></the-nav-bar>
     <router-view :key="`${$route.path}${JSON.stringify($route.query)}`"/>
 
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
+import theNavBar from './components/the-nav-bar.vue'
 
 export default {
   name: 'App',
   components: {
-    // HelloWorld
+    'the-nav-bar': theNavBar
   }
 }
 </script>
